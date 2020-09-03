@@ -9,7 +9,9 @@
 |password|string|null:false|
 |first_name|string|null: false|
 |last_name|string|null: false|
-|birthday|date|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birthday|date|null: false|
 
 ### Association
 
@@ -36,7 +38,7 @@
 - belongs_to :user
 - has_one :order
 
-## purchase_contentsテーブル
+## addressesテーブル
 
 |Column|Type|Option|
 |:---:|:---:|:---:|
@@ -61,6 +63,6 @@
 
 ### Association
 
-- has_one :purchase_content
+- has_one :address
 - belongs_to :product
 - belongs_to :user
