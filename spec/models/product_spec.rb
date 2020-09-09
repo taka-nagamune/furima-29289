@@ -112,5 +112,30 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
+      it "category_idが1の場合出品できない" do
+        @product.category_id = "1"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Category must be other than 1")
+      end
+      it "condition_idが1の場合出品できない" do
+        @product.condition_id = "1"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it "shipping_charge_idが1のとき出品できない" do
+        @product.shipping_charge_id = "1"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping charge must be other than 1")
+      end
+      it "shipping_date_idが1のとき出品できない" do
+        @product.shipping_date_id = "1"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping date must be other than 1")
+      end
+      it "shipping_region_idが1のとき出品できない" do
+        @product.shipping_region_id = "1"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping region must be other than 1")
+      end
     end
 end

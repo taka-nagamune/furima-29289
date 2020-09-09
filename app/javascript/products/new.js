@@ -6,6 +6,5 @@ window.addEventListener('load', function(){
     const profit = inputPrice - salesCharge;
     const textSalesCharge = document.getElementById("add-tax-price").textContent = salesCharge
     const textProfit = document.getElementById("profit").textContent = profit
-    // console.log(profit)
   })
 })

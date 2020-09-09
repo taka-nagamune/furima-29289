@@ -13,5 +13,5 @@ class Product < ApplicationRecord
   
   validates :condition_id, :shipping_date_id, :shipping_charge_id, :shipping_region_id, :category_id, numericality:{ other_than: 1 }
   
-  validates :price, presence: true, numericality: {:greater_than_or_equal_to => 300, :less_than_or_equal_to =>9999999}, format: {with:/\A[0-9]+\z/}
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}, format: {with:/\A[0-9]+\z/}
 end

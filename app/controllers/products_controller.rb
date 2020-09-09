@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_sign_in, except: [:index]
-  # before_action :authenticate_user!, except: [:index]
   def index
-    @products = Product.all
+    # @products = Product.all
   end
 
 
