@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many      :products
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -17,4 +18,5 @@ class User < ApplicationRecord
   validates_format_of :first_name_kana, :last_name_kana, with: NAME_KANA_REGIX, message: 'には全角カナを使用してください'
   
   validates :birthday, presence: true
+
 end
