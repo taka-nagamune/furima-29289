@@ -8,10 +8,11 @@ class Product < ApplicationRecord
 
   belongs_to        :user
   has_one_attached  :image
+  has_one           :order
 
   validates :name, :content, :condition, :shipping_region, :shipping_region, :shipping_date, :category, :image, presence: true
-  
-  validates :condition_id, :shipping_date_id, :shipping_charge_id, :shipping_region_id, :category_id, numericality:{ other_than: 1 }
-  
-  validates :price, presence: true, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}, format: {with:/\A[0-9]+\z/}
+
+  validates :condition_id, :shipping_date_id, :shipping_charge_id, :shipping_region_id, :category_id, numericality: { other_than: 1 }
+
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999}, format: {with: /\A[0-9]+\z/}
 end
