@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_sign_in, except: [:index]
+  before_action :move_to_sign_in, except: [:index, :show]
   def index
     @products = Product.all.order('created_at DESC')
   end
@@ -15,6 +15,10 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   private
