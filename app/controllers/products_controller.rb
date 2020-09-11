@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show]
+  before_action :find_params_id, only: [:show,:edit,:update]
   def index
     @products = Product.all.order('created_at DESC')
   end
@@ -18,15 +19,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path
     else
@@ -41,5 +39,9 @@ class ProductsController < ApplicationController
 
   def move_to_sign_in
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def find_params_id
+    @product = Product.find(params[:id])
   end
 end
