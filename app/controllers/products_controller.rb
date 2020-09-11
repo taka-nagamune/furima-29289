@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to root_path
     else
-      render:destroy
+      render:show
     end
   end
 
