@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show]
-  before_action :find_params_id, only: [:show,:edit,:update]
+  before_action :find_params_id, only: [:show,:edit,:update,:destroy]
   def index
     @products = Product.all.order('created_at DESC')
   end
@@ -31,6 +31,15 @@ class ProductsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    if @product.destroy
+      redirect_to root_path
+    else
+      render:show
+    end
+  end
+
   private
 
   def product_params
