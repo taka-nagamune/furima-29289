@@ -1,4 +1,4 @@
-window.addEventListener('load', function(){
+window.addEventListener("turbolinks:load", function(){
   const totalPrice = document.getElementById("item-price");
   totalPrice.addEventListener('input',function(){
     const inputPrice = document.getElementById("item-price").value;
