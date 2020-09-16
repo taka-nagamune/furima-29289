@@ -11,7 +11,5 @@ class OrdersController < ApplicationController
 
   private
   
-  def order_params
-    params.permit(:)
     
 end
