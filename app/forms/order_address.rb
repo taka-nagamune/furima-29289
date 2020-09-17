@@ -5,12 +5,13 @@ class OrderAddress
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/}
-    validates :shipping_region_id, numericality: {other_than: 0}
     validates :city
     validates :address
     validates :call_number, numericality: {less_than_or_equal_to:11}
     validates :token
+    validates :shipping_region_id, numericality: {other_than: 1}
   end
+
 
   def save
     order = Order.create(user_id: user_id, product_id: product_id)

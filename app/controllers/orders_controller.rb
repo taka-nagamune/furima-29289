@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :move_to_sign_in
   before_action :move_to_top
   def index
+    @order = Order.new
   end
 
   def create
@@ -10,7 +11,7 @@ class OrdersController < ApplicationController
     @order = OrderAddress.new(order_params)
     # binding.pry
     if @order.valid?
-      # pay_item
+      pay_item
       @order.save
       return redirect_to root_path
     else
@@ -26,13 +27,12 @@ class OrdersController < ApplicationController
   end
     
   def pay_item
-    Payjp.api_key = "sk_test_5521afb3ce4ad990c6d008e9"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @product.price,
       card: order_params[:token],
       currency:'jpy'
     )
-    # binding.pry
   end
 
   def set_product
