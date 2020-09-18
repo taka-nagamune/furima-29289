@@ -7,9 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @order = OrderAddress.new(order_params)
-    # binding.pry
     if @order.valid?
       pay_item
       @order.save
@@ -18,8 +16,7 @@ class OrdersController < ApplicationController
       render 'index'
     end
   end
-# params {info{ post address} token}
-# params.require(:info).permit(:post, :address).merge(token:params[:token])
+
   private
   
   def order_params
