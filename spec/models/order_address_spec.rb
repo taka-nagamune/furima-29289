@@ -50,12 +50,17 @@ RSpec.describe OrderAddress, type: :model do
     it 'call_numberが11桁以内でないと購入できない'do
       @order_address.call_number = "111111111111"
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Call number must be less than or equal to 11")
+      expect(@order_address.errors.full_messages).to include("Call number is too long (maximum is 11 characters)")
     end
     it 'call_numberに - を入力すると購入できない' do
       @order_address.call_number = "111-1111"
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Call number is not a number")
+      expect(@order_address.errors.full_messages).to include("Call number is invalid")
+    end
+    it 'call_numberは全て半角数値でないと購入できない'do
+      @order_address.call_number = "１１１１１１１"
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Call number is invalid")
     end
     it 'tokenが空だと購入できない'do
       @order_address.token = nil

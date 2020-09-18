@@ -7,7 +7,7 @@ class OrderAddress
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/}
     validates :city
     validates :address
-    validates :call_number, numericality: {less_than_or_equal_to:11}
+    validates :call_number, format: {with: /\A[0-9]+\z/}, length: {maximum: 11} 
     validates :token
     validates :shipping_region_id, numericality: {other_than: 1}
   end
