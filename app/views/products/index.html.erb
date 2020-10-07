@@ -125,6 +125,26 @@
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <%= search_form_for @p, url: products_search_path do |f| %>
+      <%= f.label :category_id_eq, 'カテゴリー：'%>
+      <%= f.collection_select :category_id_eq, @category , :id, :name,  include_blank: ''%>
+      <br>
+      <%= f.label :condition_id_eq, '商品状態：' %>
+      <%= f.collection_select :condition_id_eq, @condition, :id, :name, include_blank: ''%> 
+      <br>
+      <%= f.label :price, '価格：' %>
+      <%= f.radio_button :price_lteq, '' %>
+      指定なし
+      <%= f.radio_button :price_lteq, '1000'%>
+      1000円以下
+      <%= f.radio_button :price_lteq, '5000'%>
+      5000円以下
+      <%= f.radio_button :price_lteq, '10000'%>
+      10000円以下
+      <button class='search-button'>
+        <%= image_tag "search.png", class: "search-icon"%>
+      </button>
+    <% end %>
     <ul class='item-lists'>
 
       <% if @products.present? %>
@@ -154,6 +174,8 @@
             <% end %>
           </li>
         <% end %>
+        
+        
 
         <%# 商品がない場合のダミー %>
       <% else %>

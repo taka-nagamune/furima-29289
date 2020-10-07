@@ -1,8 +1,12 @@
 class ProductsController < ApplicationController
   before_action :move_to_sign_in, except: [:index, :show]
   before_action :find_params_id, only: [:show,:edit,:update,:destroy]
+  before_action :search_product, only: [:index, :search, :show]
   def index
     @products = Product.all.order('created_at DESC')
+    # set_product_column
+    @category = Category.all
+    @condition = Condition.all
   end
 
   def new
@@ -40,6 +44,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @results = @p.result
+    # binding.pry
+  end
+  
   private
 
   def product_params
@@ -52,7 +61,16 @@ class ProductsController < ApplicationController
 
   def find_params_id
     @product = Product.find(params[:id])
+    # binding.pry
   end
   
+  def search_product
+    @p = Product.ransack(params[:q])
+  end
+
+  # def set_product_column
+  #   # @product_condition = @products.select("condition.name").distinct
+  # end
+
   
 end
