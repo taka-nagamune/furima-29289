@@ -35,3 +35,8 @@ crumb :purchase do
   link "Purchase", product_orders_path
   parent :detail
 end
+
+crumb :pick_up do
+  link "Pick_up", products_search_path
+  parent :root
+end

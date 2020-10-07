@@ -2,6 +2,7 @@
   検索結果
 </h1>
 <%# 検索結果の個数で条件分岐 %>
+<% breadcrumb :pick_up %>
 <% if @results.present?%>
   <% @results.each do |result| %>
     <%= link_to  product_path(result.id) do %>
